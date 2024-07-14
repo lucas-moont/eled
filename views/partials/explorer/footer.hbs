@@ -1,0 +1,545 @@
+<div id="footer-container">
+  {{#if subscriptionFooter.active}}
+  {{> explorer/views/partials/suscription}}
+  {{/if}}
+  <!--
+<footer class="explorer-footer-contact-container">
+  <div class="explorer-footer-contact">
+    <div class="explorer-footer-contact-logo header--custom-background">
+        {{#if logo}}
+        <a class="nav-explorer-header__logo" href="/" id="logo-wrapper">
+          <span class="nav-header__title-hidden">{{name}}</span>
+          <img class="nav-header__image" src="{{logo}}" alt="{{name}}" itemprop="logo" />
+        </a>
+        {{else}}
+        <h3 class="nav-footer-contact-title header--custom-text">
+          <a href="/">{{name}}</a>
+        </h3>
+        {{/if}}
+        {{#if showLogoCaption}}
+        <div class="explorer-footer__brand-col header--custom-text header--custom-background">
+          <p class="explorer-footer__logo-caption">{{{logoCaption}}}</p>
+        </div>
+        {{/if}}
+    </div>
+
+    <div class="nav-bounds nav-bounds--contact {{#if interestLinks}} explorer-footer--with-links-pages {{/if}}">
+      <div class="explorer-footer__contact-col {{#if interestLinks}} explorer-footer--with-links-pages {{/if}}">
+        <h5 class="explorer-footer__contact-title">{{{i18n.contact}}}</h5>
+        {{#if showSocialMedia}}
+        <div class="explorer-footer__social-media">
+          {{#each socialNetworks}}
+          <a href="{{url}}" target="_blank" class="explorer-header__svg" rel="noopener noreferrer nofollow">
+            {{> (concat 'explorer/views/partials/icons/' (lookup . 'name'))}}
+          </a>
+          {{/each}}
+        </div>
+        {{/if}}
+        {{#if showContact}}
+        <ul class="explorer-footer__contact header--custom-border">
+          <meta itemprop="contactType" content="customer service" />
+          <li>
+            {{#if showPhone}}
+            <a id="shop-phone-link" itemprop="telephone" href="tel:{{phone.raw}}" rel="nofollow">
+              <span>{{phone.formatted}}</span>
+            </a>
+            {{/if}}
+            {{#if showEmail}}
+            <a id="shop-mail-link" itemprop="email" href="mailto:{{email}}" rel="nofollow">
+              <span>{{email}}</span>
+            </a>
+            {{/if}}
+          </li>
+          {{#if showAddress}}
+          <li>
+            <a id="shop-address-link" itemprop="streetAddress">
+              <span>{{address.address}}</span>
+              <span>{{address.city}}</span>
+              <span>{{address.state}}</span>
+            </a>
+          </li>
+          {{/if}}
+          {{#if contact}}
+          <li>
+            <a class="header--custom-text contact-button" href="{{contact.href}}" rel="nofollow">
+              {{> explorer/views/partials/contact}}
+               <span href="{{contact.href}}">{{contact.label}}</span>
+            </a>
+          </li>
+          {{/if}}
+        </ul>
+        {{/if}}
+        {{#if linkToLGPD}}
+        <div class="explorer-footer__info-container--desktop">
+          <a href="{{linkToHowBuy.href}}">{{linkToHowBuy.label}}</a>
+          <span class="explorer-footer-info__separator"> | </span>
+          <a href="{{linkToLGPD.href}}">{{linkToLGPD.label}}</a>
+          {{#if showBusinessData}}
+          {{#with fiscalData}}
+          <div class="nav-footer-fiscal-data">
+            <p class="nav-footer-fiscal-data__name">{{legal_name}}</p>
+            <p class="nav-footer-fiscal-data__id">{{legal_doc}}</p>
+          </div>
+          {{/with}}
+          {{/if}}
+          {{#if linkProtectedPurchase}}
+          <span class="explorer-footer-info__separator"> | </span>
+          <br>
+          <a href="{{linkProtectedPurchase.href}}"
+            class="explorer-footer-info__link-protected">{{linkProtectedPurchase.label}}</a>
+          {{/if}}
+          {{#if linkToCookieSettings}}
+          <span class="explorer-footer-info__separator"> | </span>
+          <a href="{{linkToCookieSettings.href}}">{{linkToCookieSettings.label}}</a>
+          {{/if}}
+          {{#if showQrData}}
+          {{#with fiscalData}}
+          <a class="explorer-footer__afip-link" href={{qr_link}} target="_F960AFIPInfo">
+            <img class="nav-footer-afip-img" src={{qr_img}} alt="Data fiscal" />
+          </a>
+          {{/with}}
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+
+      <div class="explorer-footer__menu header--custom-border {{#if interestLinks}} explorer-footer--with-links-pages {{/if}}">
+        <h5 class="explorer-footer__menu-title">{{dropdown_title_text}}</h5>
+        <div class="explorer-footer__categories-col">
+          {{#each menu}}
+          <span class="explorer-footer__category">
+            <a href="{{url}}" data-id="{{id}}" {{#if this.openNewTab}}target="_blank"{{/if}}>
+              {{name}}
+            </a>
+          </span>
+          {{/each}}
+        </div>
+      </div>
+      {{#if interestLinks}}
+        <div class="explorer-footer__links-pages-container">
+          <div class="explorer_footer__links-pages dropdown">
+            <div class="explorer_footer__link-pages__title-container dropdown-title">
+              <h4 class="explorer_footer__link-pages__title">{{i18n.interestLinksLabel}}</h4>
+              <div class="explorer_footer__link-pages__icon-add">
+                {{> explorer/views/partials/icons/add }}
+              </div>
+              <div class="explorer_footer__link-pages__icon-substract">
+                {{> explorer/views/partials/icons/substract }}
+              </div>
+            </div>
+            <div class="explorer_footer__link-pages__links-container dropdown-content">
+              {{#each interestLinks}}
+                <a class="explorer_footer__link" href="{{url}}">
+                  {{name}}
+                </a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="explorer-footer-info explorer-footer-info">
+    {{#if linkToLGPD}}
+    <div class="explorer-footer__info-container--mobile">
+      <a href="{{linkToHowBuy.href}}">{{linkToHowBuy.label}}</a>
+      <span class="explorer-footer-info__separator"> | </span>
+      <a href="{{linkToLGPD.href}}">{{linkToLGPD.label}}</a>
+      {{#if showBusinessData}}
+      {{#with fiscalData}}
+      <div class="nav-footer-fiscal-data">
+        <p class="nav-footer-fiscal-data__name">{{legal_name}}</p>
+        <p class="nav-footer-fiscal-data__id">{{legal_doc}}</p>
+      </div>
+      {{/with}}
+      {{/if}}
+      {{#if linkProtectedPurchase}}
+      <span class="explorer-footer-info__separator"> | </span>
+      <br>
+      <a href="{{linkProtectedPurchase.href}}"
+        class="explorer-footer-info__link-protected">{{linkProtectedPurchase.label}}</a>
+      {{/if}}
+      {{#if linkToCookieSettings}}
+      <span class="explorer-footer-info__separator"> | </span>
+      <a href="{{linkToCookieSettings.href}}">{{linkToCookieSettings.label}}</a>
+      {{/if}}
+      {{#if showQrData}}
+      {{#with fiscalData}}
+      <a class="explorer-footer__afip-link" href={{qr_link}} target="_F960AFIPInfo">
+        <img class="nav-footer-afip-img" src={{qr_img}} alt="Data fiscal" />
+      </a>
+      {{/with}}
+      {{/if}}
+    </div>
+    {{/if}}
+    <div>
+      <a href="{{{linkToMShopsLandingPage}}}" target="_blank" class="explorer-footer-info__brand">
+        <span class="explorer-footer-info__separator"> {{i18n.powered_by}}</span>
+        {{> explorer/views/partials/icons/mshops}}
+      </a>
+    </div>
+  </div>
+</footer>
+-->
+</div>
+<div class="customDesktop">
+  <section class="categoryHighlight">
+    <div class="customContainer">
+      <div class="categoryHighlightInner">
+        <div class="hightlightTextCol">
+          <h2>Mesa tolix com cadeira eames</h2>
+          <p>Descubra a sofisticação e o design em cada detalhe de nossos produtos. Garantimos uma entrega rápida e
+            segura em todo o território nacional. Nossa loja é integrada ao Mercado Livre, e também contamos com o selo
+            de loja oficial. Aproveite ainda mais com frete grátis para compras acima de R$899,99</p>
+          <a href="/mesa-tolix-com-cadeira-eames" class="highlightBtn">Confira</a>
+        </div>
+        <div class="hightlightImgCol">
+          <img src="https://imgur.com/Z4lXjvt.png" alt="Tênis Feminino" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="customDesktopFooter customFooter">
+    <div class="customContainer">
+      <div class="footerInner">
+        <div class="footerFirstCol footerCol">
+          <a href="/" style="display: inline-flex;">
+            <img src="https://imgur.com/H6DAx0F.png" class="footerLogo" alt="">
+          </a>
+          <p class="footerTitle" style='margin-top: 16px; display: flex; align-items: center;'>Siga-nos:
+            <a href="https://www.instagram.com/eledbrasil/" class="socialIcon" target="_blank"
+              style="margin: 0 8px 0; text-decoration: none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+                <g clip-path="url(#clip0_4001_572)">
+                  <path
+                    d="M11.0197 0C8.17028 0 7.81196 0.013125 6.6924 0.063C5.57284 0.1155 4.81028 0.291375 4.14221 0.55125C3.44113 0.814177 2.80627 1.22771 2.2824 1.76269C1.74742 2.28656 1.33389 2.92142 1.07096 3.6225C0.811089 4.28925 0.633902 5.05312 0.582714 6.16875C0.532839 7.29094 0.519714 7.64794 0.519714 10.5013C0.519714 13.3521 0.532839 13.7091 0.582714 14.8286C0.635214 15.9469 0.811089 16.7094 1.07096 17.3775C1.34003 18.0679 1.69834 18.6532 2.2824 19.2373C2.86515 19.8214 3.45053 20.181 4.1409 20.4487C4.81028 20.7086 5.57153 20.8858 6.68978 20.937C7.81065 20.9869 8.16765 21 11.0197 21C13.8718 21 14.2275 20.9869 15.3483 20.937C16.4653 20.8845 17.2305 20.7086 17.8985 20.4487C18.5991 20.1857 19.2335 19.7721 19.757 19.2373C20.3411 18.6532 20.6994 18.0679 20.9685 17.3775C21.227 16.7094 21.4042 15.9469 21.4567 14.8286C21.5066 13.7091 21.5197 13.3521 21.5197 10.5C21.5197 7.64794 21.5066 7.29094 21.4567 6.17006C21.4042 5.05313 21.227 4.28925 20.9685 3.6225C20.7055 2.92142 20.292 2.28656 19.757 1.76269C19.2332 1.22771 18.5983 0.814177 17.8972 0.55125C17.2278 0.291375 16.464 0.114188 15.347 0.063C14.2262 0.013125 13.8705 0 11.0171 0H11.0197ZM10.0787 1.89263H11.021C13.8245 1.89263 14.1566 1.90181 15.263 1.953C16.2868 1.99894 16.8433 2.17088 17.2134 2.31394C17.703 2.50425 18.0534 2.73263 18.4209 3.10013C18.7884 3.46762 19.0155 3.81675 19.2058 4.30763C19.3502 4.67644 19.5208 5.23294 19.5667 6.25669C19.6179 7.36313 19.6284 7.69519 19.6284 10.4974C19.6284 13.2996 19.6179 13.6329 19.5667 14.7394C19.5208 15.7631 19.3488 16.3183 19.2058 16.6884C19.0362 17.1437 18.7677 17.5557 18.4196 17.8946C18.0521 18.2621 17.703 18.4892 17.2121 18.6795C16.8446 18.8239 16.2881 18.9945 15.263 19.0417C14.1566 19.0916 13.8245 19.1034 11.021 19.1034C8.21753 19.1034 7.88415 19.0916 6.77771 19.0417C5.75396 18.9945 5.19878 18.8239 4.82865 18.6795C4.373 18.5105 3.96056 18.2424 3.62115 17.8946C3.27239 17.5555 3.00339 17.143 2.83365 16.6871C2.69059 16.3183 2.51865 15.7618 2.47271 14.7381C2.42284 13.6316 2.41234 13.2996 2.41234 10.4948C2.41234 7.68994 2.42284 7.3605 2.47271 6.25406C2.51996 5.23031 2.69059 4.67381 2.83496 4.30369C3.02528 3.81413 3.25365 3.46369 3.62115 3.09619C3.98865 2.72869 4.33778 2.50163 4.82865 2.31131C5.19878 2.16694 5.75396 1.99631 6.77771 1.94906C7.74634 1.90444 8.12171 1.89131 10.0787 1.89V1.89263ZM16.6254 3.63562C16.4599 3.63562 16.2961 3.66822 16.1432 3.73154C15.9903 3.79486 15.8514 3.88767 15.7344 4.00467C15.6174 4.12167 15.5246 4.26057 15.4613 4.41344C15.398 4.56631 15.3654 4.73016 15.3654 4.89563C15.3654 5.06109 15.398 5.22494 15.4613 5.37781C15.5246 5.53068 15.6174 5.66958 15.7344 5.78658C15.8514 5.90358 15.9903 5.99639 16.1432 6.05971C16.2961 6.12303 16.4599 6.15562 16.6254 6.15562C16.9596 6.15562 17.2801 6.02288 17.5164 5.78658C17.7527 5.55028 17.8854 5.2298 17.8854 4.89563C17.8854 4.56145 17.7527 4.24097 17.5164 4.00467C17.2801 3.76837 16.9596 3.63562 16.6254 3.63562ZM11.021 5.10825C10.3058 5.09709 9.59551 5.22832 8.9315 5.49431C8.26748 5.7603 7.66302 6.15572 7.15329 6.65756C6.64356 7.15939 6.23875 7.75762 5.96244 8.4174C5.68613 9.07719 5.54383 9.78535 5.54383 10.5007C5.54383 11.216 5.68613 11.9241 5.96244 12.5839C6.23875 13.2437 6.64356 13.8419 7.15329 14.3438C7.66302 14.8456 8.26748 15.241 8.9315 15.507C9.59551 15.773 10.3058 15.9042 11.021 15.8931C12.4366 15.871 13.7867 15.2931 14.78 14.2843C15.7732 13.2754 16.33 11.9164 16.33 10.5007C16.33 9.0849 15.7732 7.72592 14.78 6.71705C13.7867 5.70818 12.4366 5.13034 11.021 5.10825ZM11.021 6.99956C11.4807 6.99956 11.9359 7.0901 12.3606 7.26602C12.7853 7.44193 13.1712 7.69977 13.4962 8.02482C13.8213 8.34986 14.0791 8.73575 14.255 9.16044C14.4309 9.58513 14.5215 10.0403 14.5215 10.5C14.5215 10.9597 14.4309 11.4149 14.255 11.8396C14.0791 12.2643 13.8213 12.6501 13.4962 12.9752C13.1712 13.3002 12.7853 13.5581 12.3606 13.734C11.9359 13.9099 11.4807 14.0004 11.021 14.0004C10.0927 14.0004 9.2023 13.6316 8.54584 12.9752C7.88938 12.3187 7.52059 11.4284 7.52059 10.5C7.52059 9.57163 7.88938 8.68128 8.54584 8.02482C9.2023 7.36836 10.0927 6.99956 11.021 6.99956Z"
+                    fill="#00BDF3" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_4001_572">
+                    <rect width="21" height="21" fill="white" transform="translate(0.519714)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/" class="socialIcon" target="_blank"
+              style="margin-right: 8px; text-decoration: none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+                <g clip-path="url(#clip0_4001_574)">
+                  <path
+                    d="M20.6797 0H1.35971C0.895089 0 0.519714 0.375375 0.519714 0.84V20.16C0.519714 20.6246 0.895089 21 1.35971 21H20.6797C21.1443 21 21.5197 20.6246 21.5197 20.16V0.84C21.5197 0.375375 21.1443 0 20.6797 0ZM19.8397 19.32H15.0071V12.8678H17.7371L18.1466 9.69938H15.0071V7.6755C15.0071 6.75675 15.2617 6.132 16.5768 6.132H18.2542V3.297C17.9628 3.25763 16.968 3.171 15.8077 3.171C13.3875 3.171 11.7311 4.64887 11.7311 7.3605V9.69675H8.99584V12.8651H11.7337V19.32H2.19971V1.68H19.8397V19.32Z"
+                    fill="#00BDF3" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_4001_574">
+                    <rect width="21" height="21" fill="white" transform="translate(0.519714)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </p>
+        </div>
+        <div class="footerThirdCol footerCol">
+          <p class="footerTitle">Categorias</p>
+          <div class="footerCategoriesWrapper">
+            <div class="footerCategoriesCol">
+              <a href="/quarto" class="footerLink">
+                <span>Quarto</span>
+              </a>
+              <a href="/cozinha" class="footerLink">
+                <span>Cozinha</span>
+              </a>
+              <a href="/sala-de-estar" class="footerLink">
+                <span>Sala de Estar</span>
+              </a>
+            </div>
+            <div class="footerCategoriesCol">
+              <a href="/escritorio" class="footerLink">
+                <span>Escritório</span>
+              </a>
+              <a href="/banheiro" class="footerLink">
+                <span>Banheiro</span>
+              </a>
+              <a href="/sala-de-jantar" class="footerLink">
+                <span>Sala de Jantar</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footerFourthCol footerCol">
+          <p class="footerTitle">Fale conosco</p>
+          <a href="https://api.whatsapp.com/send?phone=5511930736961" target="_blank" class="footerLink">
+            <span style="margin-right: 6px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                <path
+                  d="M5.893 6.90327e-05C4.51926 -0.00498011 3.19974 0.535764 2.22461 1.5034C1.24948 2.47103 0.698559 3.78633 0.693 5.16007C0.69165 6.10013 0.949795 7.02233 1.439 7.82507L0.5 10.5941L3.379 9.67907C4.06922 10.0682 4.83962 10.2937 5.63076 10.3379C6.4219 10.3822 7.21263 10.2441 7.94196 9.93435C8.67128 9.6246 9.3197 9.15144 9.83718 8.55138C10.3547 7.95132 10.7274 7.2404 10.9266 6.47347C11.1258 5.70654 11.1461 4.9041 10.9861 4.12806C10.826 3.35202 10.4898 2.62311 10.0034 1.99759C9.51704 1.37206 8.89344 0.866636 8.18076 0.5203C7.46808 0.173963 6.68537 -0.00402421 5.893 6.90327e-05ZM8.479 7.12007C8.37588 7.27797 8.24066 7.41238 8.08215 7.51455C7.92364 7.61672 7.74539 7.68436 7.559 7.71307C7.315 7.72607 7.308 7.90207 5.978 7.32407C5.06592 6.85391 4.30586 6.13476 3.786 5.25007C3.49053 4.84742 3.3198 4.36688 3.295 3.86807C3.29931 3.66256 3.34655 3.46023 3.43369 3.27406C3.52083 3.0879 3.64595 2.92201 3.801 2.78707C3.84803 2.73927 3.90405 2.70123 3.96583 2.67515C4.02761 2.64906 4.09394 2.63544 4.161 2.63507C4.261 2.63507 4.334 2.63507 4.411 2.63507C4.488 2.63507 4.605 2.61907 4.705 2.88707C4.805 3.15507 5.047 3.81307 5.077 3.88007C5.09634 3.91549 5.10648 3.95521 5.10648 3.99557C5.10648 4.03593 5.09634 4.07564 5.077 4.11107C5.04053 4.18911 4.99305 4.26152 4.936 4.32607C4.867 4.40007 4.79 4.49307 4.728 4.54907C4.666 4.60507 4.587 4.68107 4.659 4.81507C4.84467 5.16123 5.08056 5.478 5.359 5.75507C5.66611 6.04626 6.02181 6.28148 6.41 6.45007C6.54 6.52107 6.618 6.51307 6.699 6.42807C6.78 6.34307 7.045 6.05607 7.139 5.92807C7.233 5.80007 7.32 5.82807 7.439 5.87307C7.558 5.91807 8.199 6.26407 8.33 6.33507C8.461 6.40607 8.547 6.44207 8.579 6.49807C8.6075 6.71072 8.57271 6.92706 8.479 7.12007Z"
+                  fill="#00BDF3" />
+              </svg>
+            </span>
+            <span style="position: relative; top: -1px">(11) 93073-6961</span>
+          </a>
+          <a href="mailto:contato@eleddecor.com.br" target="_blank" class="footerLink">
+            <span style="margin-right: 6px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path
+                  d="M11.754 0.962944L8.819 3.95194C8.81392 3.95688 8.80989 3.96279 8.80713 3.96932C8.80437 3.97584 8.80295 3.98286 8.80295 3.98994C8.80295 3.99703 8.80437 4.00404 8.80713 4.01057C8.80989 4.0171 8.81392 4.023 8.819 4.02794L10.873 6.21594C10.9392 6.2823 10.9764 6.37221 10.9764 6.46594C10.9764 6.55967 10.9392 6.64958 10.873 6.71594C10.8064 6.78165 10.7166 6.8185 10.623 6.8185C10.5294 6.8185 10.4396 6.78165 10.373 6.71594L8.325 4.53794C8.31451 4.5275 8.30031 4.52164 8.2855 4.52164C8.2707 4.52164 8.2565 4.5275 8.246 4.53794L7.746 5.04494C7.54178 5.2533 7.29815 5.41895 7.0293 5.53225C6.76045 5.64556 6.47175 5.70426 6.18 5.70494C5.88152 5.70407 5.58623 5.64356 5.31146 5.52696C5.0367 5.41036 4.78801 5.24001 4.58 5.02594L4.1 4.53794C4.08951 4.5275 4.07531 4.52164 4.0605 4.52164C4.0457 4.52164 4.0315 4.5275 4.021 4.53794L1.978 6.71794C1.91139 6.78365 1.82158 6.82049 1.728 6.82049C1.63443 6.82049 1.54462 6.78365 1.478 6.71794C1.41181 6.65158 1.37464 6.56168 1.37464 6.46794C1.37464 6.37421 1.41181 6.28431 1.478 6.21794L3.53 4.03194C3.53915 4.0214 3.54419 4.0079 3.54419 3.99394C3.54419 3.97998 3.53915 3.96649 3.53 3.95594L0.593004 0.962944C0.58551 0.955117 0.575835 0.949726 0.565236 0.947471C0.554638 0.945216 0.543606 0.946202 0.533575 0.950301C0.523544 0.954399 0.514978 0.961421 0.508991 0.970453C0.503004 0.979484 0.499873 0.990109 0.500004 1.00094V6.98194C0.500532 7.21332 0.592678 7.43506 0.756283 7.59866C0.919888 7.76227 1.14163 7.85441 1.373 7.85494H10.973C11.2044 7.85441 11.4261 7.76227 11.5897 7.59866C11.7533 7.43506 11.8455 7.21332 11.846 6.98194V1.00094C11.8455 0.990517 11.842 0.980448 11.836 0.971913C11.83 0.963378 11.8217 0.95673 11.8121 0.952745C11.8024 0.94876 11.7918 0.947603 11.7816 0.949409C11.7713 0.951215 11.7617 0.955909 11.754 0.962944Z"
+                  fill="#00BDF3" />
+                <path
+                  d="M6.16301 4.994C6.36157 4.99466 6.55824 4.95543 6.74135 4.87864C6.92447 4.80186 7.0903 4.68908 7.22901 4.547L11.509 0.191003C11.3562 0.0672885 11.1656 -0.000146727 10.969 3.45213e-06H1.36001C1.16336 -0.000556114 0.972571 0.0669262 0.820007 0.191003L5.10001 4.547C5.23837 4.68872 5.40371 4.80128 5.58628 4.87806C5.76885 4.95483 5.96495 4.99425 6.16301 4.994Z"
+                  fill="#00BDF3" />
+              </svg>
+            </span>
+            <span style="position: relative; top: -1px">contato@eleddecor.com.br</span>
+          </a>
+        </div>
+        <div class="footerCol">
+          <p class="footerTitle">Políticas</p>
+          <div class="footerCategoriesWrapper">
+            <div class="footerCategoriesCol">
+              <a href="/p/privacidade" target="_blank" class="footerLink">
+                <span>Como protegemos a sua privacidade</span>
+              </a>
+              <a href="/p/como-comprar" target="_blank" class="footerLink">
+                <span>Como comprar</span>
+              </a>
+              <a href="https://www.mercadolivre.com.br/ajuda/devolucoes_3285?_ga=2.82115478.1252986493.1678713407-148534757.1675428154&_ga=2.82597726.993953008.1687377802-535131266.1687377802&_ga=2.101130689.1540696117.1687980411-1815004477.1687274520&_gl=1*5yy1pm*_mshops_ga*MTgxNTAwNDQ3Ny4xNjg3Mjc0NTIw*_mshops_ga_XSCVRG3M3Y*MTY4Nzk4MDQyMy4yLjAuMTY4Nzk4MDQ0MS40Mi4wLjA.*_mshops_ga_S2KZ7SJ50R*MTY4Nzk4MDQyMy4xLjAuMTY4Nzk4MDQyMy4wLjAuMA.."
+                class="footerLink"><span>Política de trocas e devoluções</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="belowFooter">
+    <div class="customContainer">
+      <div class="belowFooterInner">
+        <div>
+          <p>
+            <b>Led LTDA - CNPJ: 10.698.601/0001-73</b><br>
+            Rua Caiubi, 826 - Jardim Stella, Santo André - SP, CEP 09185-610
+          </p>
+        </div>
+        <div style="display: inline-flex; align-items: center">
+          <a href="https://savvi.com.br" style="display: inline-block; margin-left: 8px" class="belowFooterImgs">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95.974"
+              height="28.388" viewBox="0 0 95.974 28.388">
+              <defs>
+                <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#fff"></stop>
+                  <stop offset="1" stop-color="#62c5e3"></stop>
+                </linearGradient>
+                <linearGradient id="linear-gradient-2" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#62c5e3"></stop>
+                  <stop offset="1" stop-color="#2072b9"></stop>
+                </linearGradient>
+              </defs>
+              <g id="svg_preto" transform="translate(0 0)">
+                <g id="Group_1214" data-name="Group 1214" transform="translate(0 0)">
+                  <path id="Path_1061" data-name="Path 1061"
+                    d="M22.694,42.1a7.1,7.1,0,0,0,5.688-2.85A10.441,10.441,0,0,1,36.732,35h.152A14.192,14.192,0,1,1,8.5,35h7.1A7.1,7.1,0,0,0,22.694,42.1Z"
+                    transform="translate(-8.5 -20.806)" fill="url(#linear-gradient)"></path>
+                  <path id="Path_1062" data-name="Path 1062"
+                    d="M39.924.54A14.2,14.2,0,0,1,54.118,14.734h-7.1a7.1,7.1,0,0,0-12.786-4.247,10.449,10.449,0,0,1-8.353,4.247H25.73A14.2,14.2,0,0,1,39.924.54Z"
+                    transform="translate(-18.633 -0.54)" fill="url(#linear-gradient-2)"></path>
+                </g>
+                <g id="Group_1215" data-name="Group 1215" transform="translate(39.259 6.73)">
+                  <path id="Path_1063" data-name="Path 1063"
+                    d="M115.488,31.5V33.02a3.726,3.726,0,0,1-.338,1.573,3.977,3.977,0,0,1-.931,1.289,4.324,4.324,0,0,1-1.4.861,4.712,4.712,0,0,1-1.705.313h-2.929a4.709,4.709,0,0,1-1.705-.309,4.432,4.432,0,0,1-1.4-.857,3.944,3.944,0,0,1-.931-1.285,3.7,3.7,0,0,1-.338-1.565V30.35h4.374v2.673h2.929V31.512l-6.179-6.323a3.962,3.962,0,0,1-.836-1.26,3.7,3.7,0,0,1-.288-1.438V20.947a3.739,3.739,0,0,1,.338-1.573,3.978,3.978,0,0,1,.931-1.289,4.324,4.324,0,0,1,1.4-.861,4.712,4.712,0,0,1,1.705-.313h2.929a4.626,4.626,0,0,1,1.705.313,4.368,4.368,0,0,1,1.4.861,3.96,3.96,0,0,1,.931,1.289,3.726,3.726,0,0,1,.338,1.573V23.62h-4.374V20.947h-2.929v1.545l6.179,6.352a4.075,4.075,0,0,1,.836,1.248A3.5,3.5,0,0,1,115.488,31.5Z"
+                    transform="translate(-103.81 -16.898)" fill="#020203"></path>
+                  <path id="Path_1064" data-name="Path 1064"
+                    d="M148.025,37.035H143.65V30.329h-2.9v6.71H136.38V20.917a3.739,3.739,0,0,1,.338-1.573,3.977,3.977,0,0,1,.931-1.289,4.324,4.324,0,0,1,1.4-.861,4.712,4.712,0,0,1,1.705-.313h2.9a4.626,4.626,0,0,1,1.705.313,4.368,4.368,0,0,1,1.4.861,3.961,3.961,0,0,1,.931,1.289,3.726,3.726,0,0,1,.338,1.573ZM143.65,26.292V20.917h-2.9v5.371h2.9Z"
+                    transform="translate(-122.964 -16.88)" fill="#020203"></path>
+                  <path id="Path_1065" data-name="Path 1065"
+                    d="M179.6,16.88v4.008q0,1.038-.066,2.805a33.124,33.124,0,0,1-.4,3.934,33.8,33.8,0,0,1-1.079,4.6,22.8,22.8,0,0,1-2.121,4.807H171.59a22.388,22.388,0,0,1-2.121-4.807,33.895,33.895,0,0,1-1.483-8.535c-.041-1.178-.066-2.113-.066-2.805V16.88h4.374v4.008c0,.515,0,1.157.016,1.928s.066,1.644.161,2.611.247,2.01.449,3.118a28.513,28.513,0,0,0,.853,3.415,27.423,27.423,0,0,0,.836-3.415q.29-1.662.432-3.118c.095-.968.148-1.841.161-2.611s.016-1.413.016-1.928V16.88H179.6Z"
+                    transform="translate(-141.513 -16.88)" fill="#020203"></path>
+                  <path id="Path_1066" data-name="Path 1066"
+                    d="M210.768,16.88v4.008q0,1.038-.066,2.805a33.118,33.118,0,0,1-.4,3.934,33.8,33.8,0,0,1-1.079,4.6,22.8,22.8,0,0,1-2.121,4.807H202.76a22.388,22.388,0,0,1-2.121-4.807,33.895,33.895,0,0,1-1.483-8.535q-.068-1.767-.066-2.805V16.88h4.374v4.008c0,.515,0,1.157.016,1.928s.066,1.644.161,2.611.247,2.01.449,3.118a28.513,28.513,0,0,0,.853,3.415,27.423,27.423,0,0,0,.836-3.415q.29-1.662.432-3.118c.095-.968.148-1.841.161-2.611s.016-1.413.016-1.928V16.88h4.379Z"
+                    transform="translate(-159.844 -16.88)" fill="#020203"></path>
+                  <path id="Path_1067" data-name="Path 1067" d="M235.254,16.88V37.035H230.88V16.88Z"
+                    transform="translate(-178.539 -16.88)" fill="#020203"></path>
+                </g>
+                <ellipse id="Ellipse_24" data-name="Ellipse 24" cx="2.187" cy="2.187" rx="2.187" ry="2.187"
+                  transform="translate(91.599 1.503)" fill="#61c4e3"></ellipse>
+              </g>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="customMobile">
+  <footer class="customDesktopFooter customFooter">
+    <div class="customContainer">
+      <div class="footerInner">
+        <div class="footerFirstCol footerCol">
+          <a href="/" style="display: inline-flex;">
+            <img src="https://imgur.com/H6DAx0F.png" class="footerLogo" alt="">
+          </a>
+          <p class="footerTitle"
+            style='margin-top: 16px; display: flex; justify-content: center; font-size: 20px; gap: 8px; align-items: center; flex-direction: column;'>
+            <span>Siga-nos:</span>
+            <span>
+              <a href="https://www.instagram.com/eledbrasil/" class="socialIcon" target="_blank"
+                style="margin: 0 4px 0; text-decoration: none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+                  <g clip-path="url(#clip0_4001_572)">
+                    <path
+                      d="M11.0197 0C8.17028 0 7.81196 0.013125 6.6924 0.063C5.57284 0.1155 4.81028 0.291375 4.14221 0.55125C3.44113 0.814177 2.80627 1.22771 2.2824 1.76269C1.74742 2.28656 1.33389 2.92142 1.07096 3.6225C0.811089 4.28925 0.633902 5.05312 0.582714 6.16875C0.532839 7.29094 0.519714 7.64794 0.519714 10.5013C0.519714 13.3521 0.532839 13.7091 0.582714 14.8286C0.635214 15.9469 0.811089 16.7094 1.07096 17.3775C1.34003 18.0679 1.69834 18.6532 2.2824 19.2373C2.86515 19.8214 3.45053 20.181 4.1409 20.4487C4.81028 20.7086 5.57153 20.8858 6.68978 20.937C7.81065 20.9869 8.16765 21 11.0197 21C13.8718 21 14.2275 20.9869 15.3483 20.937C16.4653 20.8845 17.2305 20.7086 17.8985 20.4487C18.5991 20.1857 19.2335 19.7721 19.757 19.2373C20.3411 18.6532 20.6994 18.0679 20.9685 17.3775C21.227 16.7094 21.4042 15.9469 21.4567 14.8286C21.5066 13.7091 21.5197 13.3521 21.5197 10.5C21.5197 7.64794 21.5066 7.29094 21.4567 6.17006C21.4042 5.05313 21.227 4.28925 20.9685 3.6225C20.7055 2.92142 20.292 2.28656 19.757 1.76269C19.2332 1.22771 18.5983 0.814177 17.8972 0.55125C17.2278 0.291375 16.464 0.114188 15.347 0.063C14.2262 0.013125 13.8705 0 11.0171 0H11.0197ZM10.0787 1.89263H11.021C13.8245 1.89263 14.1566 1.90181 15.263 1.953C16.2868 1.99894 16.8433 2.17088 17.2134 2.31394C17.703 2.50425 18.0534 2.73263 18.4209 3.10013C18.7884 3.46762 19.0155 3.81675 19.2058 4.30763C19.3502 4.67644 19.5208 5.23294 19.5667 6.25669C19.6179 7.36313 19.6284 7.69519 19.6284 10.4974C19.6284 13.2996 19.6179 13.6329 19.5667 14.7394C19.5208 15.7631 19.3488 16.3183 19.2058 16.6884C19.0362 17.1437 18.7677 17.5557 18.4196 17.8946C18.0521 18.2621 17.703 18.4892 17.2121 18.6795C16.8446 18.8239 16.2881 18.9945 15.263 19.0417C14.1566 19.0916 13.8245 19.1034 11.021 19.1034C8.21753 19.1034 7.88415 19.0916 6.77771 19.0417C5.75396 18.9945 5.19878 18.8239 4.82865 18.6795C4.373 18.5105 3.96056 18.2424 3.62115 17.8946C3.27239 17.5555 3.00339 17.143 2.83365 16.6871C2.69059 16.3183 2.51865 15.7618 2.47271 14.7381C2.42284 13.6316 2.41234 13.2996 2.41234 10.4948C2.41234 7.68994 2.42284 7.3605 2.47271 6.25406C2.51996 5.23031 2.69059 4.67381 2.83496 4.30369C3.02528 3.81413 3.25365 3.46369 3.62115 3.09619C3.98865 2.72869 4.33778 2.50163 4.82865 2.31131C5.19878 2.16694 5.75396 1.99631 6.77771 1.94906C7.74634 1.90444 8.12171 1.89131 10.0787 1.89V1.89263ZM16.6254 3.63562C16.4599 3.63562 16.2961 3.66822 16.1432 3.73154C15.9903 3.79486 15.8514 3.88767 15.7344 4.00467C15.6174 4.12167 15.5246 4.26057 15.4613 4.41344C15.398 4.56631 15.3654 4.73016 15.3654 4.89563C15.3654 5.06109 15.398 5.22494 15.4613 5.37781C15.5246 5.53068 15.6174 5.66958 15.7344 5.78658C15.8514 5.90358 15.9903 5.99639 16.1432 6.05971C16.2961 6.12303 16.4599 6.15562 16.6254 6.15562C16.9596 6.15562 17.2801 6.02288 17.5164 5.78658C17.7527 5.55028 17.8854 5.2298 17.8854 4.89563C17.8854 4.56145 17.7527 4.24097 17.5164 4.00467C17.2801 3.76837 16.9596 3.63562 16.6254 3.63562ZM11.021 5.10825C10.3058 5.09709 9.59551 5.22832 8.9315 5.49431C8.26748 5.7603 7.66302 6.15572 7.15329 6.65756C6.64356 7.15939 6.23875 7.75762 5.96244 8.4174C5.68613 9.07719 5.54383 9.78535 5.54383 10.5007C5.54383 11.216 5.68613 11.9241 5.96244 12.5839C6.23875 13.2437 6.64356 13.8419 7.15329 14.3438C7.66302 14.8456 8.26748 15.241 8.9315 15.507C9.59551 15.773 10.3058 15.9042 11.021 15.8931C12.4366 15.871 13.7867 15.2931 14.78 14.2843C15.7732 13.2754 16.33 11.9164 16.33 10.5007C16.33 9.0849 15.7732 7.72592 14.78 6.71705C13.7867 5.70818 12.4366 5.13034 11.021 5.10825ZM11.021 6.99956C11.4807 6.99956 11.9359 7.0901 12.3606 7.26602C12.7853 7.44193 13.1712 7.69977 13.4962 8.02482C13.8213 8.34986 14.0791 8.73575 14.255 9.16044C14.4309 9.58513 14.5215 10.0403 14.5215 10.5C14.5215 10.9597 14.4309 11.4149 14.255 11.8396C14.0791 12.2643 13.8213 12.6501 13.4962 12.9752C13.1712 13.3002 12.7853 13.5581 12.3606 13.734C11.9359 13.9099 11.4807 14.0004 11.021 14.0004C10.0927 14.0004 9.2023 13.6316 8.54584 12.9752C7.88938 12.3187 7.52059 11.4284 7.52059 10.5C7.52059 9.57163 7.88938 8.68128 8.54584 8.02482C9.2023 7.36836 10.0927 6.99956 11.021 6.99956Z"
+                      fill="#00BDF3" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4001_572">
+                      <rect width="21" height="21" fill="white" transform="translate(0.519714)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+              <a href="https://www.facebook.com/" class="socialIcon" target="_blank"
+                style="margin-right: 8px; text-decoration: none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+                  <g clip-path="url(#clip0_4001_574)">
+                    <path
+                      d="M20.6797 0H1.35971C0.895089 0 0.519714 0.375375 0.519714 0.84V20.16C0.519714 20.6246 0.895089 21 1.35971 21H20.6797C21.1443 21 21.5197 20.6246 21.5197 20.16V0.84C21.5197 0.375375 21.1443 0 20.6797 0ZM19.8397 19.32H15.0071V12.8678H17.7371L18.1466 9.69938H15.0071V7.6755C15.0071 6.75675 15.2617 6.132 16.5768 6.132H18.2542V3.297C17.9628 3.25763 16.968 3.171 15.8077 3.171C13.3875 3.171 11.7311 4.64887 11.7311 7.3605V9.69675H8.99584V12.8651H11.7337V19.32H2.19971V1.68H19.8397V19.32Z"
+                      fill="#00BDF3" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4001_574">
+                      <rect width="21" height="21" fill="white" transform="translate(0.519714)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </span>
+          </p>
+        </div>
+        <div class="footerThirdCol footerCol">
+          <p class="footerTitle">Categorias</p>
+          <div class="footerCategoriesWrapper">
+            <div class="footerCategoriesCol">
+              <a href="/quarto" class="footerLink">
+                <span>Quarto</span>
+              </a>
+              <a href="/cozinha" class="footerLink">
+                <span>Cozinha</span>
+              </a>
+              <a href="/sala-de-estar" class="footerLink">
+                <span>Sala de Estar</span>
+              </a>
+            </div>
+            <div class="footerCategoriesCol">
+              <a href="/escritorio" class="footerLink">
+                <span>Escritório</span>
+              </a>
+              <a href="/banheiro" class="footerLink">
+                <span>Banheiro</span>
+              </a>
+              <a href="/sala-de-jantar" class="footerLink">
+                <span>Sala de Jantar</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footerFourthCol footerCol">
+          <p class="footerTitle">Fale conosco</p>
+          <a href="https://api.whatsapp.com/send?phone=5511930736961" target="_blank" class="footerLink">
+            <span style="margin-right: 6px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                <path
+                  d="M5.893 6.90327e-05C4.51926 -0.00498011 3.19974 0.535764 2.22461 1.5034C1.24948 2.47103 0.698559 3.78633 0.693 5.16007C0.69165 6.10013 0.949795 7.02233 1.439 7.82507L0.5 10.5941L3.379 9.67907C4.06922 10.0682 4.83962 10.2937 5.63076 10.3379C6.4219 10.3822 7.21263 10.2441 7.94196 9.93435C8.67128 9.6246 9.3197 9.15144 9.83718 8.55138C10.3547 7.95132 10.7274 7.2404 10.9266 6.47347C11.1258 5.70654 11.1461 4.9041 10.9861 4.12806C10.826 3.35202 10.4898 2.62311 10.0034 1.99759C9.51704 1.37206 8.89344 0.866636 8.18076 0.5203C7.46808 0.173963 6.68537 -0.00402421 5.893 6.90327e-05ZM8.479 7.12007C8.37588 7.27797 8.24066 7.41238 8.08215 7.51455C7.92364 7.61672 7.74539 7.68436 7.559 7.71307C7.315 7.72607 7.308 7.90207 5.978 7.32407C5.06592 6.85391 4.30586 6.13476 3.786 5.25007C3.49053 4.84742 3.3198 4.36688 3.295 3.86807C3.29931 3.66256 3.34655 3.46023 3.43369 3.27406C3.52083 3.0879 3.64595 2.92201 3.801 2.78707C3.84803 2.73927 3.90405 2.70123 3.96583 2.67515C4.02761 2.64906 4.09394 2.63544 4.161 2.63507C4.261 2.63507 4.334 2.63507 4.411 2.63507C4.488 2.63507 4.605 2.61907 4.705 2.88707C4.805 3.15507 5.047 3.81307 5.077 3.88007C5.09634 3.91549 5.10648 3.95521 5.10648 3.99557C5.10648 4.03593 5.09634 4.07564 5.077 4.11107C5.04053 4.18911 4.99305 4.26152 4.936 4.32607C4.867 4.40007 4.79 4.49307 4.728 4.54907C4.666 4.60507 4.587 4.68107 4.659 4.81507C4.84467 5.16123 5.08056 5.478 5.359 5.75507C5.66611 6.04626 6.02181 6.28148 6.41 6.45007C6.54 6.52107 6.618 6.51307 6.699 6.42807C6.78 6.34307 7.045 6.05607 7.139 5.92807C7.233 5.80007 7.32 5.82807 7.439 5.87307C7.558 5.91807 8.199 6.26407 8.33 6.33507C8.461 6.40607 8.547 6.44207 8.579 6.49807C8.6075 6.71072 8.57271 6.92706 8.479 7.12007Z"
+                  fill="#00BDF3" />
+              </svg>
+            </span>
+            <span style="position: relative; top: -1px">(11) 93073-6961</span>
+          </a>
+          <a href="mailto:contato@eleddecor.com.br" target="_blank" class="footerLink">
+            <span style="margin-right: 6px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path
+                  d="M11.754 0.962944L8.819 3.95194C8.81392 3.95688 8.80989 3.96279 8.80713 3.96932C8.80437 3.97584 8.80295 3.98286 8.80295 3.98994C8.80295 3.99703 8.80437 4.00404 8.80713 4.01057C8.80989 4.0171 8.81392 4.023 8.819 4.02794L10.873 6.21594C10.9392 6.2823 10.9764 6.37221 10.9764 6.46594C10.9764 6.55967 10.9392 6.64958 10.873 6.71594C10.8064 6.78165 10.7166 6.8185 10.623 6.8185C10.5294 6.8185 10.4396 6.78165 10.373 6.71594L8.325 4.53794C8.31451 4.5275 8.30031 4.52164 8.2855 4.52164C8.2707 4.52164 8.2565 4.5275 8.246 4.53794L7.746 5.04494C7.54178 5.2533 7.29815 5.41895 7.0293 5.53225C6.76045 5.64556 6.47175 5.70426 6.18 5.70494C5.88152 5.70407 5.58623 5.64356 5.31146 5.52696C5.0367 5.41036 4.78801 5.24001 4.58 5.02594L4.1 4.53794C4.08951 4.5275 4.07531 4.52164 4.0605 4.52164C4.0457 4.52164 4.0315 4.5275 4.021 4.53794L1.978 6.71794C1.91139 6.78365 1.82158 6.82049 1.728 6.82049C1.63443 6.82049 1.54462 6.78365 1.478 6.71794C1.41181 6.65158 1.37464 6.56168 1.37464 6.46794C1.37464 6.37421 1.41181 6.28431 1.478 6.21794L3.53 4.03194C3.53915 4.0214 3.54419 4.0079 3.54419 3.99394C3.54419 3.97998 3.53915 3.96649 3.53 3.95594L0.593004 0.962944C0.58551 0.955117 0.575835 0.949726 0.565236 0.947471C0.554638 0.945216 0.543606 0.946202 0.533575 0.950301C0.523544 0.954399 0.514978 0.961421 0.508991 0.970453C0.503004 0.979484 0.499873 0.990109 0.500004 1.00094V6.98194C0.500532 7.21332 0.592678 7.43506 0.756283 7.59866C0.919888 7.76227 1.14163 7.85441 1.373 7.85494H10.973C11.2044 7.85441 11.4261 7.76227 11.5897 7.59866C11.7533 7.43506 11.8455 7.21332 11.846 6.98194V1.00094C11.8455 0.990517 11.842 0.980448 11.836 0.971913C11.83 0.963378 11.8217 0.95673 11.8121 0.952745C11.8024 0.94876 11.7918 0.947603 11.7816 0.949409C11.7713 0.951215 11.7617 0.955909 11.754 0.962944Z"
+                  fill="#00BDF3" />
+                <path
+                  d="M6.16301 4.994C6.36157 4.99466 6.55824 4.95543 6.74135 4.87864C6.92447 4.80186 7.0903 4.68908 7.22901 4.547L11.509 0.191003C11.3562 0.0672885 11.1656 -0.000146727 10.969 3.45213e-06H1.36001C1.16336 -0.000556114 0.972571 0.0669262 0.820007 0.191003L5.10001 4.547C5.23837 4.68872 5.40371 4.80128 5.58628 4.87806C5.76885 4.95483 5.96495 4.99425 6.16301 4.994Z"
+                  fill="#00BDF3" />
+              </svg>
+            </span>
+            <span style="position: relative; top: -1px">contato@eleddecor.com.br</span>
+          </a>
+        </div>
+        <div class="footerCol">
+          <p class="footerTitle">Políticas</p>
+          <div class="footerCategoriesWrapper">
+            <div class="footerCategoriesCol">
+              <a href="/p/privacidade" target="_blank" class="footerLink">
+                <span>Como protegemos a sua privacidade</span>
+              </a>
+              <a href="/p/como-comprar" target="_blank" class="footerLink">
+                <span>Como comprar</span>
+              </a>
+              <a href="https://www.mercadolivre.com.br/ajuda/devolucoes_3285?_ga=2.82115478.1252986493.1678713407-148534757.1675428154&_ga=2.82597726.993953008.1687377802-535131266.1687377802&_ga=2.101130689.1540696117.1687980411-1815004477.1687274520&_gl=1*5yy1pm*_mshops_ga*MTgxNTAwNDQ3Ny4xNjg3Mjc0NTIw*_mshops_ga_XSCVRG3M3Y*MTY4Nzk4MDQyMy4yLjAuMTY4Nzk4MDQ0MS40Mi4wLjA.*_mshops_ga_S2KZ7SJ50R*MTY4Nzk4MDQyMy4xLjAuMTY4Nzk4MDQyMy4wLjAuMA.."
+                class="footerLink"><span>Política de trocas e devoluções</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="belowFooter">
+    <div class="customContainer">
+      <div class="belowFooterInner">
+        <div>
+          <p>
+            <b>Led LTDA - CNPJ: 10.698.601/0001-73</b><br>
+            Rua Caiubi, 826 - Jardim Stella, Santo André - SP, CEP 09185-610
+          </p>
+        </div>
+        <div style="display: inline-flex; align-items: center">
+          <a href="https://savvi.com.br" style="display: inline-block; margin-left: 8px" class="belowFooterImgs">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95.974"
+              height="28.388" viewBox="0 0 95.974 28.388">
+              <defs>
+                <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#fff"></stop>
+                  <stop offset="1" stop-color="#62c5e3"></stop>
+                </linearGradient>
+                <linearGradient id="linear-gradient-2" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#62c5e3"></stop>
+                  <stop offset="1" stop-color="#2072b9"></stop>
+                </linearGradient>
+              </defs>
+              <g id="svg_preto" transform="translate(0 0)">
+                <g id="Group_1214" data-name="Group 1214" transform="translate(0 0)">
+                  <path id="Path_1061" data-name="Path 1061"
+                    d="M22.694,42.1a7.1,7.1,0,0,0,5.688-2.85A10.441,10.441,0,0,1,36.732,35h.152A14.192,14.192,0,1,1,8.5,35h7.1A7.1,7.1,0,0,0,22.694,42.1Z"
+                    transform="translate(-8.5 -20.806)" fill="url(#linear-gradient)"></path>
+                  <path id="Path_1062" data-name="Path 1062"
+                    d="M39.924.54A14.2,14.2,0,0,1,54.118,14.734h-7.1a7.1,7.1,0,0,0-12.786-4.247,10.449,10.449,0,0,1-8.353,4.247H25.73A14.2,14.2,0,0,1,39.924.54Z"
+                    transform="translate(-18.633 -0.54)" fill="url(#linear-gradient-2)"></path>
+                </g>
+                <g id="Group_1215" data-name="Group 1215" transform="translate(39.259 6.73)">
+                  <path id="Path_1063" data-name="Path 1063"
+                    d="M115.488,31.5V33.02a3.726,3.726,0,0,1-.338,1.573,3.977,3.977,0,0,1-.931,1.289,4.324,4.324,0,0,1-1.4.861,4.712,4.712,0,0,1-1.705.313h-2.929a4.709,4.709,0,0,1-1.705-.309,4.432,4.432,0,0,1-1.4-.857,3.944,3.944,0,0,1-.931-1.285,3.7,3.7,0,0,1-.338-1.565V30.35h4.374v2.673h2.929V31.512l-6.179-6.323a3.962,3.962,0,0,1-.836-1.26,3.7,3.7,0,0,1-.288-1.438V20.947a3.739,3.739,0,0,1,.338-1.573,3.978,3.978,0,0,1,.931-1.289,4.324,4.324,0,0,1,1.4-.861,4.712,4.712,0,0,1,1.705-.313h2.929a4.626,4.626,0,0,1,1.705.313,4.368,4.368,0,0,1,1.4.861,3.96,3.96,0,0,1,.931,1.289,3.726,3.726,0,0,1,.338,1.573V23.62h-4.374V20.947h-2.929v1.545l6.179,6.352a4.075,4.075,0,0,1,.836,1.248A3.5,3.5,0,0,1,115.488,31.5Z"
+                    transform="translate(-103.81 -16.898)" fill="#020203"></path>
+                  <path id="Path_1064" data-name="Path 1064"
+                    d="M148.025,37.035H143.65V30.329h-2.9v6.71H136.38V20.917a3.739,3.739,0,0,1,.338-1.573,3.977,3.977,0,0,1,.931-1.289,4.324,4.324,0,0,1,1.4-.861,4.712,4.712,0,0,1,1.705-.313h2.9a4.626,4.626,0,0,1,1.705.313,4.368,4.368,0,0,1,1.4.861,3.961,3.961,0,0,1,.931,1.289,3.726,3.726,0,0,1,.338,1.573ZM143.65,26.292V20.917h-2.9v5.371h2.9Z"
+                    transform="translate(-122.964 -16.88)" fill="#020203"></path>
+                  <path id="Path_1065" data-name="Path 1065"
+                    d="M179.6,16.88v4.008q0,1.038-.066,2.805a33.124,33.124,0,0,1-.4,3.934,33.8,33.8,0,0,1-1.079,4.6,22.8,22.8,0,0,1-2.121,4.807H171.59a22.388,22.388,0,0,1-2.121-4.807,33.895,33.895,0,0,1-1.483-8.535c-.041-1.178-.066-2.113-.066-2.805V16.88h4.374v4.008c0,.515,0,1.157.016,1.928s.066,1.644.161,2.611.247,2.01.449,3.118a28.513,28.513,0,0,0,.853,3.415,27.423,27.423,0,0,0,.836-3.415q.29-1.662.432-3.118c.095-.968.148-1.841.161-2.611s.016-1.413.016-1.928V16.88H179.6Z"
+                    transform="translate(-141.513 -16.88)" fill="#020203"></path>
+                  <path id="Path_1066" data-name="Path 1066"
+                    d="M210.768,16.88v4.008q0,1.038-.066,2.805a33.118,33.118,0,0,1-.4,3.934,33.8,33.8,0,0,1-1.079,4.6,22.8,22.8,0,0,1-2.121,4.807H202.76a22.388,22.388,0,0,1-2.121-4.807,33.895,33.895,0,0,1-1.483-8.535q-.068-1.767-.066-2.805V16.88h4.374v4.008c0,.515,0,1.157.016,1.928s.066,1.644.161,2.611.247,2.01.449,3.118a28.513,28.513,0,0,0,.853,3.415,27.423,27.423,0,0,0,.836-3.415q.29-1.662.432-3.118c.095-.968.148-1.841.161-2.611s.016-1.413.016-1.928V16.88h4.379Z"
+                    transform="translate(-159.844 -16.88)" fill="#020203"></path>
+                  <path id="Path_1067" data-name="Path 1067" d="M235.254,16.88V37.035H230.88V16.88Z"
+                    transform="translate(-178.539 -16.88)" fill="#020203"></path>
+                </g>
+                <ellipse id="Ellipse_24" data-name="Ellipse 24" cx="2.187" cy="2.187" rx="2.187" ry="2.187"
+                  transform="translate(91.599 1.503)" fill="#61c4e3"></ellipse>
+              </g>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
