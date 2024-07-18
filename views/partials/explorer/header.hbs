@@ -1,200 +1,212 @@
-<div class="header-wrapper header-wrapper--fixed nav-logo-float-left {{headerAdditionalClasses}}" id="header-wrapper" data-ms-theme="explorer">
+<div class="header-wrapper header-wrapper--fixed nav-logo-float-left {{headerAdditionalClasses}}" id="header-wrapper"
+  data-ms-theme="explorer">
   {{#if flash.enabled}}
-    {{> components/flash}}
+  {{> components/flash}}
   {{/if}}
   {{> components/cookieDisclaimer}}
-  <header role="banner" class="nav-default-header" itemtype="http://schema.org/Store" itemid="#this" itemscope="">
+</div>
 
-    <div class="nav-default-header__bounds" id="nav-header-container">
-      <!-- Categories -->
-      <ul itemscope itemtype="http://schema.org/SiteNavigationElement" class="nav-default-list" id="nav-list">
-        <li class="nav-default-list__item nav-default__hamburger-button" id="nav-default__hamburger-button">
-          <input type="checkbox" id="mobile-categories-menu-switch" name="nav-tools-header__menu-switch">
-          <label for="mobile-categories-menu-switch" id="hamburguer-menu">
-            <span class="nav-header__hamburger"></span>
-            <span class="nav-header__hamburger"></span>
-            <span class="nav-header__hamburger"></span>
-          </label>
-        </li>
-
-        {{#each menu}}
-          <li class="nav-default-list__item {{#if this.featured}}nav-default__sale-link{{/if}}" data-js="{{this.name}}-{{@index}}" has-childs={{#if this.nodes}}"true"{{else}}"false"{{/if}}>
-            {{#if this.url}}
-            <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>
-              <span class="font-secondary-text">{{this.name}}</span>
+<div class="customDesktop customTopDesktop">
+  <header class="customHeader">
+    <div class="customHeaderTop">
+      <div class="customContainer">
+        <div class="customHeaderTopInner">
+          <div class="headerTopCol headerLogoCol">
+            <a href="/">
+              <img src="https://imgur.com/H6DAx0F.png" class="headerLogo" alt="">
             </a>
-            {{else}}
-            <span class="font-secondary-text header--link-disabled">{{this.name}}</span>
-            {{/if}}
-          </li>
-        {{/each}}
-
-        {{#if sale.text}}
-          <li class="nav-default-list__item nav-default__sale-link" id="nav-default__sale-link">
-            <a href="{{sale.url}}" class="font-secondary-text">{{sale.text}}</a>
-          </li>
-        {{/if}}
-
-        <li class="nav-default-list__item nav-default__see-more" id="nav-default__see-more" has-childs="true">
-          <a class="font-secondary-text">
-            <span>{{i18n.moreCategories}}</span>
-          </a>
-        </li>
-      </ul>
-
-      <!-- Mobile responsive menu -->
-      <div itemscope itemtype="http://schema.org/SiteNavigationElement" class="nav-default-sidebar-menu nav-default-responsive-menu header--custom-background" id="responsive-menu">
-        <form class="nav-default-search-form header--custom-border" id="search-form-responsive" novalidate="">
-          <button type="submit" class="search-button">
-            {{> explorer/views/partials/search}}
-          </button>
-          <input type="text" placeholder="{{i18n.smallPlaceholder}}" class="header--custom-text" id="search-input-responsive" required="" autocomplete="off">
-        </form>
-
-        <ul class="responsive-menu-list {{#if flash.enabled}}responsive-menu-list--with-flash{{/if}}">
-          {{#if sale.text}}
-            <li class="nav-default-list--vertical__item nav-default__sale-link header--custom-border">
-              <a href="{{sale.url}}" class="header--custom-text">{{sale.text}}</a>
-            </li>
-            <li class="nav-default-list__item nav-default__hamburger-button" id="nav-default__hamburger-button"></li>
-          {{/if}}
-
-          {{#each menu}}
-            <li class="nav-default-list--vertical__item {{#if this.featured}}nav-default__sale-link{{/if}}">
-              {{#if this.url}}
-              <a href="{{this.url}}" class="header--custom-text"{{#if this.openNewTab}} target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-              {{else}}
-              <span class="header--custom-text header--link-disabled">{{this.name}}</span>
-              {{/if}}
-              {{#if this.nodes}}
-                <div>
-                  <input type="checkbox" data-js="categories-toggle" id="mobile-{{@index}}" name="nav-tools-header__menu-switch">
-                  <label for="mobile-{{@index}}" class="toggle-menu">
-                    <span class="nav-header__toggle nav-header__hamburger"></span>
-                    <span class="nav-header__toggle nav-header__hamburger"></span>
-                  </label>
-                </div>
-              {{/if}}
-            </li>
-            <div class="nav-default-list--vertical__subitem-container" data-toggle="mobile-{{@index}}" >
-              {{#each this.nodes}}
-                <li class="nav-default-list--vertical__subitem">
-                  <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}} class="header--custom-text">{{this.name}}</a>
-                  {{#if this.nodes}}
-                    <div>
-                      <input type="checkbox" data-js="categories-toggle" id="mobile-attr-{{@../index}}-{{@index}}" name="nav-tools-header__menu-switch">
-                      <label for="mobile-attr-{{@../index}}-{{@index}}" class="toggle-menu">
-                        <span class="nav-header__toggle nav-header__hamburger"></span>
-                        <span class="nav-header__toggle nav-header__hamburger"></span>
-                      </label>
-                    </div>
-                  {{/if}}
-                </li>
-                <div class="nav-default-list--vertical__attr-container" data-toggle="mobile-attr-{{@../index}}-{{@index}}">
-                  {{#each this.nodes}}
-                    <li class="nav-default-list--vertical__attribute">
-                      <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}} class="header--custom-text">{{this.name}}</a>
-                    </li>
-                  {{/each}}
-                </div>
-              {{/each}}
-            </div>
-            <hr class="nav-default-list--vertical__hr header--custom-border" />
-          {{/each}}
-        </ul>
-      </div>
-
-      <!-- Logo -->
-      <div class="nav-default-header__title" id="nav-default-header__nav-logo">
-        {{#if logo}}
-          <a class="nav-default-header__logo" href="/" id="logo-wrapper">
-            <span class="nav-header__title-hidden title">{{shop.name}}</span>
-            <img class="nav-header__image" src="{{logo}}" alt="{{shop.name}}" itemprop="logo" />
-          </a>
-        {{else}}
-          <a class="nav-default-header__logo title" href="/" id="logo-wrapper">{{name}}</a>
-        {{/if}}
-      </div>
-
-      <!-- Icons -->
-      <nav class="nav-default-header__nav-icons" id="nav-default-header__nav-icons">
-        <div class="nav-icons-group">
-          <form class="nav-search-form" id="search-form" novalidate="">
-            <input type="text" class="nav-search-input header--custom-border header--custom-text" placeholder="{{i18n.smallPlaceholder}}" id="search-input" required="" autocomplete="off">
-            <button type="submit" class="search-button" id="nav-search-button">
-              {{> explorer/views/partials/search}}
-            </button>
-          </form>
-          {{#if cart}}
-            <a href="{{cart.href}}" title="Carrito" class="cart-button" id="nav-cart">
-              {{> explorer/views/partials/cart}}
-              {{> explorer/views/partials/cart-badge}}
+          </div>
+          <div class="headerCol">
+            <a href="#" class="blueBtn">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="21" viewBox="0 0 17 21" fill="none">
+                  <mask id="mask0_4001_247" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0"
+                    width="17" height="21">
+                    <path
+                      d="M8.49261 0.70556C8.6884 1.23816 8.72568 1.82029 8.5936 2.37987L8.58808 2.40326L8.58034 2.42601C8.15226 3.68466 7.42754 4.82166 6.46753 5.74105L6.25147 5.9853L6.24567 5.99185L6.23964 5.9982C5.77293 6.48998 5.35502 7.02587 4.99178 7.59833C4.72257 8.03448 4.56668 8.53102 4.53831 9.04278C4.52148 9.39366 4.55305 9.74518 4.63213 10.0874L3.74812 10.5042C3.60082 10.312 3.48223 10.0994 3.39605 9.87316C3.27888 9.58793 3.23396 9.27812 3.26535 8.97127C3.27785 8.84905 3.30231 8.72882 3.33811 8.61223C2.62682 9.15382 2.04706 9.84916 1.64219 10.6463C1.23629 11.4456 1.01673 12.3263 0.999969 13.2225C1.0028 16.6274 4.23697 19.518 8.36797 19.518C12.5 19.518 15.733 16.6269 15.734 13.2195C15.7279 12.2983 15.5115 11.3907 15.1013 10.5658C14.6908 9.7404 14.0972 9.01972 13.3657 8.45878L13.3513 8.44775L13.3378 8.43572L13.3271 8.42623C12.8975 8.10452 12.5513 7.68435 12.3178 7.201C12.1846 6.95499 12.0866 6.69148 12.0266 6.41818L12.0246 6.40909L12.0247 6.40906L12.0247 6.40905L12.0247 6.40903L12.0247 6.40894L12.0246 6.40867L12.0244 6.40772L12.0238 6.40447L12.0217 6.39414L12.0216 6.39342C12.021 6.39058 12.0197 6.38392 12.0183 6.37662C11.9559 6.07777 11.966 5.7702 12.0454 5.47911C11.7647 5.6259 11.5126 5.82311 11.3019 6.06158C11.0347 6.36399 10.8416 6.72443 10.7378 7.11434C10.6457 7.50063 10.6498 7.90364 10.7498 8.28801L8.49261 0.70556ZM8.49261 0.70556C9.50548 1.41747 9.88138 2.27307 9.97317 3.15195C10.0792 4.16762 9.80945 5.23451 9.55468 6.22665M8.49261 0.70556L9.55468 6.22665M9.55468 6.22665L9.54441 6.26626C9.49993 6.43774 9.45514 6.61042 9.41532 6.77686C9.32651 7.10721 9.2665 7.44465 9.23596 7.78538L9.23525 7.79331L9.23479 7.80127C9.21157 8.20466 9.31144 8.6056 9.52118 8.95096C9.73092 9.29632 10.0406 9.56981 10.4093 9.73521L11.7858 10.3527L11.0506 9.03534C10.9192 8.79994 10.8182 8.54886 10.7498 8.28808L9.55468 6.22665Z"
+                      fill="white" stroke="white" />
+                  </mask>
+                  <g mask="url(#mask0_4001_247)">
+                    <path d="M-1.00003 19.517V0.499023H17.734V19.517H-1.00003Z" fill="#F1F1F1" stroke="#F1F1F1" />
+                  </g>
+                  <path d="M11.109 11.363L5.62499 16.847L11.109 11.363Z" fill="#013884" />
+                  <path d="M11.109 11.363L5.62499 16.847" stroke="#013884" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <mask id="path-5-inside-1_4001_247" fill="white">
+                    <path
+                      d="M6.08575 11.0549C5.66117 11.0549 5.31698 11.3991 5.31698 11.8237C5.31698 12.2483 5.66117 12.5925 6.08575 12.5925C6.51033 12.5925 6.85452 12.2483 6.85452 11.8237C6.85452 11.3991 6.51033 11.0549 6.08575 11.0549ZM6.08575 10.0549C7.06105 10.0549 7.85452 10.8484 7.85452 11.8237C7.85452 12.799 7.06105 13.5925 6.08575 13.5925C5.11045 13.5925 4.31698 12.799 4.31698 11.8237C4.31698 10.8484 5.11045 10.0549 6.08575 10.0549Z" />
+                  </mask>
+                  <path
+                    d="M6.08575 11.0549C5.66117 11.0549 5.31698 11.3991 5.31698 11.8237C5.31698 12.2483 5.66117 12.5925 6.08575 12.5925C6.51033 12.5925 6.85452 12.2483 6.85452 11.8237C6.85452 11.3991 6.51033 11.0549 6.08575 11.0549ZM6.08575 10.0549C7.06105 10.0549 7.85452 10.8484 7.85452 11.8237C7.85452 12.799 7.06105 13.5925 6.08575 13.5925C5.11045 13.5925 4.31698 12.799 4.31698 11.8237C4.31698 10.8484 5.11045 10.0549 6.08575 10.0549Z"
+                    fill="#013884" />
+                  <path
+                    d="M6.08575 10.0549C5.10889 10.0549 4.31698 10.8468 4.31698 11.8237H6.31698C6.31698 11.9514 6.21346 12.0549 6.08575 12.0549V10.0549ZM4.31698 11.8237C4.31698 12.8006 5.10889 13.5925 6.08575 13.5925V11.5925C6.21346 11.5925 6.31698 11.696 6.31698 11.8237H4.31698ZM6.08575 13.5925C7.06262 13.5925 7.85452 12.8006 7.85452 11.8237H5.85452C5.85452 11.696 5.95805 11.5925 6.08575 11.5925V13.5925ZM7.85452 11.8237C7.85452 10.8468 7.06262 10.0549 6.08575 10.0549V12.0549C5.95805 12.0549 5.85452 11.9514 5.85452 11.8237H7.85452ZM6.08575 11.0549C6.50877 11.0549 6.85452 11.4007 6.85452 11.8237H8.85452C8.85452 10.2961 7.61334 9.05493 6.08575 9.05493V11.0549ZM6.85452 11.8237C6.85452 12.2467 6.50877 12.5925 6.08575 12.5925V14.5925C7.61334 14.5925 8.85452 13.3513 8.85452 11.8237H6.85452ZM6.08575 12.5925C5.66274 12.5925 5.31698 12.2467 5.31698 11.8237H3.31698C3.31698 13.3513 4.55817 14.5925 6.08575 14.5925V12.5925ZM5.31698 11.8237C5.31698 11.4007 5.66274 11.0549 6.08575 11.0549V9.05493C4.55817 9.05493 3.31698 10.2961 3.31698 11.8237H5.31698Z"
+                    fill="#013884" mask="url(#path-5-inside-1_4001_247)" />
+                  <mask id="path-7-inside-2_4001_247" fill="white">
+                    <path
+                      d="M10.6478 15.6169C10.2232 15.6169 9.87898 15.9611 9.87898 16.3857C9.87898 16.8103 10.2232 17.1545 10.6478 17.1545C11.0723 17.1545 11.4165 16.8103 11.4165 16.3857C11.4165 15.9611 11.0723 15.6169 10.6478 15.6169ZM10.6478 14.6169C11.6231 14.6169 12.4165 15.4104 12.4165 16.3857C12.4165 17.361 11.6231 18.1545 10.6478 18.1545C9.67245 18.1545 8.87898 17.361 8.87898 16.3857C8.87898 15.4104 9.67245 14.6169 10.6478 14.6169Z" />
+                  </mask>
+                  <path
+                    d="M10.6478 15.6169C10.2232 15.6169 9.87898 15.9611 9.87898 16.3857C9.87898 16.8103 10.2232 17.1545 10.6478 17.1545C11.0723 17.1545 11.4165 16.8103 11.4165 16.3857C11.4165 15.9611 11.0723 15.6169 10.6478 15.6169ZM10.6478 14.6169C11.6231 14.6169 12.4165 15.4104 12.4165 16.3857C12.4165 17.361 11.6231 18.1545 10.6478 18.1545C9.67245 18.1545 8.87898 17.361 8.87898 16.3857C8.87898 15.4104 9.67245 14.6169 10.6478 14.6169Z"
+                    fill="#013884" />
+                  <path
+                    d="M10.6478 14.6169C9.67089 14.6169 8.87898 15.4088 8.87898 16.3857H10.879C10.879 16.5134 10.7755 16.6169 10.6478 16.6169V14.6169ZM8.87898 16.3857C8.87898 17.3626 9.67089 18.1545 10.6478 18.1545V16.1545C10.7755 16.1545 10.879 16.258 10.879 16.3857H8.87898ZM10.6478 18.1545C11.6246 18.1545 12.4165 17.3626 12.4165 16.3857H10.4165C10.4165 16.258 10.52 16.1545 10.6478 16.1545V18.1545ZM12.4165 16.3857C12.4165 15.4088 11.6246 14.6169 10.6478 14.6169V16.6169C10.52 16.6169 10.4165 16.5134 10.4165 16.3857H12.4165ZM10.6478 15.6169C11.0708 15.6169 11.4165 15.9627 11.4165 16.3857H13.4165C13.4165 14.8581 12.1753 13.6169 10.6478 13.6169V15.6169ZM11.4165 16.3857C11.4165 16.8087 11.0708 17.1545 10.6478 17.1545V19.1545C12.1753 19.1545 13.4165 17.9133 13.4165 16.3857H11.4165ZM10.6478 17.1545C10.2247 17.1545 9.87898 16.8087 9.87898 16.3857H7.87898C7.87898 17.9133 9.12017 19.1545 10.6478 19.1545V17.1545ZM9.87898 16.3857C9.87898 15.9627 10.2247 15.6169 10.6478 15.6169V13.6169C9.12017 13.6169 7.87898 14.8581 7.87898 16.3857H9.87898Z"
+                    fill="#013884" mask="url(#path-7-inside-2_4001_247)" />
+                </svg>
+              </span>
+              <span>
+                Ofertas
+              </span>
             </a>
-          {{/if}}
+          </div>
+          <div class="headerTopCol headerSearchCol">
+            <form action="" id="searchFormDesktop">
+              <input type="text" id="searchInputDesktop" placeholder="Pesquisar...">
+              <button class="searchBtnDesktop">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path
+                    d="M13.517 7.98505C13.517 9.17332 13.1646 10.3349 12.5044 11.3229C11.8443 12.3109 10.906 13.081 9.80814 13.5357C8.71032 13.9905 7.50231 14.1094 6.33688 13.8776C5.17144 13.6458 4.10092 13.0736 3.26068 12.2333C2.42045 11.3931 1.84824 10.3226 1.61642 9.15715C1.3846 7.99172 1.50358 6.78371 1.95831 5.68589C2.41304 4.58807 3.1831 3.64975 4.17111 2.98958C5.15912 2.32941 6.32071 1.97705 7.50898 1.97705C9.1024 1.97705 10.6306 2.61003 11.7573 3.73675C12.884 4.86347 13.517 6.39163 13.517 7.98505Z"
+                    stroke="#013884" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M15.02 15.496L11.753 12.229" stroke="#013884" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="headerCol">
+            <span href="#" class="transparentBtn">
+              <a href="" class="getInTouchMain">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                    <path
+                      d="M11.6616 10.7645L11.2571 11.1909C11.2571 11.1909 10.2945 12.2036 7.66782 9.43841C5.04117 6.67321 6.00384 5.66049 6.00384 5.66049L6.25806 5.39131C6.8865 4.7306 6.94605 3.66895 6.39761 2.89341L5.27762 1.3094C4.59851 0.349391 3.28741 0.222331 2.50964 1.04116L1.11409 2.50941C0.729204 2.916 0.471428 3.44118 0.502539 4.02471C0.582538 5.51837 1.22076 8.73064 4.77984 12.4784C8.55493 16.4521 12.0971 16.6102 13.5451 16.4672C14.0038 16.422 14.402 16.1754 14.7229 15.8366L15.9851 14.5076C16.8384 13.6107 16.5984 12.0718 15.5069 11.4441L13.8091 10.4662C13.0927 10.0549 12.2216 10.1754 11.6616 10.7645Z"
+                      fill="#013884" />
+                  </svg>
+                </span>
+                <span>
+                  Entre em contato
+                </span>
+              </a>
+              <span class="getInTouchFloatingExtraInfo">
+                <span class="getInTouchFloatingExtraTop">
+                  <a href="" class="getInTouchFloatingExtraContact">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27" fill="none">
+                        <path
+                          d="M12 0.95459C18.6276 0.95459 24 6.57119 24 13.5C24 20.4289 18.6276 26.0455 12 26.0455C9.87932 26.0493 7.79591 25.4626 5.96401 24.3456L0.00481854 26.0455L1.62722 19.8129C0.557968 17.8971 -0.00369795 15.7181 1.83224e-05 13.5C1.83224e-05 6.57119 5.37242 0.95459 12 0.95459ZM7.91041 7.60368L7.67041 7.61371C7.51524 7.62489 7.36363 7.6675 7.22401 7.73917C7.0939 7.81633 6.97509 7.91267 6.87121 8.0252C6.72721 8.16697 6.64561 8.28991 6.55801 8.40909C6.11416 9.01241 5.87518 9.7531 5.87881 10.5142C5.88121 11.1289 6.03481 11.7274 6.27481 12.2869C6.76561 13.4185 7.57321 14.6166 8.63881 15.7269C8.89561 15.9941 9.14761 16.2625 9.41881 16.5122C10.7429 17.7309 12.3207 18.6098 14.0268 19.079L14.7084 19.1881C14.9304 19.2007 15.1524 19.1831 15.3756 19.1718C15.725 19.1526 16.0662 19.0537 16.3752 18.882C16.5322 18.7972 16.6856 18.7051 16.8348 18.606C16.8348 18.606 16.8856 18.5701 16.9848 18.4931C17.1468 18.3677 17.2464 18.2786 17.3808 18.1318C17.4816 18.0231 17.5656 17.8968 17.6328 17.7529C17.7264 17.5485 17.82 17.1583 17.8584 16.8334C17.8872 16.585 17.8788 16.4495 17.8752 16.3654C17.8704 16.2312 17.7636 16.0919 17.6472 16.033L16.9488 15.7055C16.9488 15.7055 15.9048 15.2301 15.2664 14.9265C15.1996 14.896 15.128 14.8786 15.0552 14.875C14.9731 14.866 14.8901 14.8756 14.8118 14.9031C14.7336 14.9306 14.6619 14.9754 14.6016 15.0343C14.5956 15.0318 14.5152 15.1033 13.6476 16.2023C13.5978 16.2723 13.5292 16.3251 13.4506 16.3542C13.3719 16.3832 13.2868 16.3871 13.206 16.3654C13.1278 16.3436 13.0512 16.316 12.9768 16.2826C12.828 16.2174 12.7764 16.1923 12.6744 16.1471C11.9855 15.8334 11.3477 15.4088 10.7844 14.8888C10.6332 14.7508 10.4928 14.6003 10.3488 14.4547C9.87675 13.982 9.46531 13.4473 9.12481 12.864L9.05401 12.7448C9.00393 12.6643 8.96286 12.578 8.93161 12.4876C8.88601 12.3032 9.00481 12.1552 9.00481 12.1552C9.00481 12.1552 9.29641 11.8215 9.43201 11.6408C9.56401 11.4652 9.67561 11.2945 9.74761 11.1729C9.88921 10.9345 9.93361 10.6899 9.85921 10.5004C9.52321 9.64231 9.17601 8.7888 8.81761 7.93989C8.74681 7.77178 8.53681 7.65135 8.34601 7.62751C8.28121 7.61915 8.21641 7.61246 8.15161 7.60744C7.99049 7.59778 7.82892 7.59945 7.66801 7.61246L7.91041 7.60368Z"
+                          fill="#013884" />
+                      </svg>
+                    </span>
+                    <span>
+                      Entre em contato<br>
+                      <span class="getInTouchExtraContactMainText" style="font-size: 18px">
+                        (11) 93073-6961
+                      </span>
+                    </span>
+                  </a>
+                  <a href="mailto:contato@eleddecor.com.br" class="getInTouchFloatingExtraContact">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+                        <path
+                          d="M2.4 20C1.74 20 1.1752 19.7554 0.7056 19.2662C0.236 18.7771 0.0008 18.1883 0 17.5V2.5C0 1.8125 0.2352 1.22417 0.7056 0.735C1.176 0.245833 1.7408 0.000833333 2.4 0H21.6C22.26 0 22.8252 0.245 23.2956 0.735C23.766 1.225 24.0008 1.81333 24 2.5V17.5C24 18.1875 23.7652 18.7762 23.2956 19.2662C22.826 19.7562 22.2608 20.0008 21.6 20H2.4ZM12 11.25L21.6 5V2.5L12 8.75L2.4 2.5V5L12 11.25Z"
+                          fill="#013884" />
+                      </svg>
+                    </span>
+                    <span>
+                      Entre em contato<br>
+                      <span class="getInTouchExtraContactMainText">
+                        contato@eleddecor.com.br
+                      </span>
+                    </span>
+                  </a>
+                  <span>
+                    <span class="getInTouchExtraContactMainText" style="font-size: 16px;">
+                      Horário de atendimento
+                    </span><br>
+                    <span>
+                      Segunda a sexta das 9h às 19h.<br>
+                      Sábado das 9h às 13h.
+                    </span>
+                  </span>
+                </span>
+                <span class="getInTouchFloatingExtraBottom">
+                  <span>
+                    Siga-nos:
+                    <a href="https://www.instagram.com/eledbrasil/" target="_blank">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <path
+                          d="M10.5 0C7.65056 0 7.29225 0.013125 6.17269 0.063C5.05312 0.1155 4.29056 0.291375 3.6225 0.55125C2.92142 0.814177 2.28656 1.22771 1.76269 1.76269C1.22771 2.28656 0.814177 2.92142 0.55125 3.6225C0.291375 4.28925 0.114188 5.05312 0.063 6.16875C0.013125 7.29094 0 7.64794 0 10.5013C0 13.3521 0.013125 13.7091 0.063 14.8286C0.1155 15.9469 0.291375 16.7094 0.55125 17.3775C0.820312 18.0679 1.17863 18.6532 1.76269 19.2373C2.34544 19.8214 2.93081 20.181 3.62119 20.4487C4.29056 20.7086 5.05181 20.8858 6.17006 20.937C7.29094 20.9869 7.64794 21 10.5 21C13.3521 21 13.7078 20.9869 14.8286 20.937C15.9456 20.8845 16.7108 20.7086 17.3788 20.4487C18.0794 20.1857 18.7138 19.7721 19.2373 19.2373C19.8214 18.6532 20.1797 18.0679 20.4487 17.3775C20.7073 16.7094 20.8845 15.9469 20.937 14.8286C20.9869 13.7091 21 13.3521 21 10.5C21 7.64794 20.9869 7.29094 20.937 6.17006C20.8845 5.05313 20.7073 4.28925 20.4487 3.6225C20.1858 2.92142 19.7723 2.28656 19.2373 1.76269C18.7134 1.22771 18.0786 0.814177 17.3775 0.55125C16.7081 0.291375 15.9443 0.114188 14.8273 0.063C13.7064 0.013125 13.3507 0 10.4974 0H10.5ZM9.55894 1.89263H10.5013C13.3048 1.89263 13.6369 1.90181 14.7433 1.953C15.7671 1.99894 16.3236 2.17088 16.6937 2.31394C17.1833 2.50425 17.5337 2.73263 17.9012 3.10013C18.2687 3.46762 18.4958 3.81675 18.6861 4.30763C18.8304 4.67644 19.0011 5.23294 19.047 6.25669C19.0982 7.36313 19.1087 7.69519 19.1087 10.4974C19.1087 13.2996 19.0982 13.6329 19.047 14.7394C19.0011 15.7631 18.8291 16.3183 18.6861 16.6884C18.5165 17.1437 18.248 17.5557 17.8999 17.8946C17.5324 18.2621 17.1833 18.4892 16.6924 18.6795C16.3249 18.8239 15.7684 18.9945 14.7433 19.0417C13.6369 19.0916 13.3048 19.1034 10.5013 19.1034C7.69781 19.1034 7.36444 19.0916 6.258 19.0417C5.23425 18.9945 4.67906 18.8239 4.30894 18.6795C3.85328 18.5105 3.44085 18.2424 3.10144 17.8946C2.75267 17.5555 2.48368 17.143 2.31394 16.6871C2.17088 16.3183 1.99894 15.7618 1.953 14.7381C1.90313 13.6316 1.89263 13.2996 1.89263 10.4948C1.89263 7.68994 1.90313 7.3605 1.953 6.25406C2.00025 5.23031 2.17088 4.67381 2.31525 4.30369C2.50556 3.81413 2.73394 3.46369 3.10144 3.09619C3.46894 2.72869 3.81806 2.50163 4.30894 2.31131C4.67906 2.16694 5.23425 1.99631 6.258 1.94906C7.22662 1.90444 7.602 1.89131 9.55894 1.89V1.89263ZM16.1057 3.63562C15.9402 3.63562 15.7764 3.66822 15.6235 3.73154C15.4706 3.79486 15.3317 3.88767 15.2147 4.00467C15.0977 4.12167 15.0049 4.26057 14.9416 4.41344C14.8783 4.56631 14.8457 4.73016 14.8457 4.89563C14.8457 5.06109 14.8783 5.22494 14.9416 5.37781C15.0049 5.53068 15.0977 5.66958 15.2147 5.78658C15.3317 5.90358 15.4706 5.99639 15.6235 6.05971C15.7764 6.12303 15.9402 6.15562 16.1057 6.15562C16.4399 6.15562 16.7603 6.02288 16.9966 5.78658C17.2329 5.55028 17.3657 5.2298 17.3657 4.89563C17.3657 4.56145 17.2329 4.24097 16.9966 4.00467C16.7603 3.76837 16.4399 3.63562 16.1057 3.63562ZM10.5013 5.10825C9.78609 5.09709 9.0758 5.22832 8.41178 5.49431C7.74777 5.7603 7.1433 6.15572 6.63357 6.65756C6.12384 7.15939 5.71904 7.75762 5.44273 8.4174C5.16642 9.07719 5.02412 9.78535 5.02412 10.5007C5.02412 11.216 5.16642 11.9241 5.44273 12.5839C5.71904 13.2437 6.12384 13.8419 6.63357 14.3438C7.1433 14.8456 7.74777 15.241 8.41178 15.507C9.0758 15.773 9.78609 15.9042 10.5013 15.8931C11.9169 15.871 13.267 15.2931 14.2603 14.2843C15.2535 13.2754 15.8102 11.9164 15.8102 10.5007C15.8102 9.0849 15.2535 7.72592 14.2603 6.71705C13.267 5.70818 11.9169 5.13034 10.5013 5.10825ZM10.5013 6.99956C10.961 6.99956 11.4162 7.0901 11.8409 7.26602C12.2656 7.44193 12.6515 7.69977 12.9765 8.02482C13.3015 8.34986 13.5594 8.73575 13.7353 9.16044C13.9112 9.58513 14.0017 10.0403 14.0017 10.5C14.0017 10.9597 13.9112 11.4149 13.7353 11.8396C13.5594 12.2643 13.3015 12.6501 12.9765 12.9752C12.6515 13.3002 12.2656 13.5581 11.8409 13.734C11.4162 13.9099 10.961 14.0004 10.5013 14.0004C9.57294 14.0004 8.68259 13.6316 8.02613 12.9752C7.36967 12.3187 7.00087 11.4284 7.00087 10.5C7.00087 9.57163 7.36967 8.68128 8.02613 8.02482C8.68259 7.36836 9.57294 6.99956 10.5013 6.99956Z"
+                          fill="#F8F8F8" />
+                      </svg>
+                    </a>
+                    <a href="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <g clip-path="url(#clip0_4001_553)">
+                          <path
+                            d="M20.16 0H0.84C0.375375 0 0 0.375375 0 0.84V20.16C0 20.6246 0.375375 21 0.84 21H20.16C20.6246 21 21 20.6246 21 20.16V0.84C21 0.375375 20.6246 0 20.16 0ZM19.32 19.32H14.4874V12.8678H17.2174L17.6269 9.69938H14.4874V7.6755C14.4874 6.75675 14.742 6.132 16.0571 6.132H17.7345V3.297C17.4431 3.25763 16.4482 3.171 15.288 3.171C12.8678 3.171 11.2114 4.64887 11.2114 7.3605V9.69675H8.47612V12.8651H11.214V19.32H1.68V1.68H19.32V19.32Z"
+                            fill="#F8F8F8" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_4001_553">
+                            <rect width="21" height="21" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                  </span>
+                </span>
+              </span>
+
+            </span>
+          </div>
+          <div class="headerTopCol iconsCol">
+            <span class="headerIconsWrapper">
+              <a href="/g/cart" target="_blank" class="headerIconLink">
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                  <path
+                    d="M24.5 24C22.835 24 21.5 25.335 21.5 27C21.5 27.7956 21.8161 28.5587 22.3787 29.1213C22.9413 29.6839 23.7044 30 24.5 30C25.2956 30 26.0587 29.6839 26.6213 29.1213C27.1839 28.5587 27.5 27.7956 27.5 27C27.5 26.2044 27.1839 25.4413 26.6213 24.8787C26.0587 24.3161 25.2956 24 24.5 24ZM0.5 0V3H3.5L8.9 14.385L6.86 18.06C6.635 18.48 6.5 18.975 6.5 19.5C6.5 20.2956 6.81607 21.0587 7.37868 21.6213C7.94129 22.1839 8.70435 22.5 9.5 22.5H27.5V19.5H10.13C10.0305 19.5 9.93516 19.4605 9.86483 19.3902C9.79451 19.3198 9.755 19.2245 9.755 19.125C9.755 19.05 9.77 18.99 9.8 18.945L11.15 16.5H22.325C23.45 16.5 24.44 15.87 24.95 14.955L30.32 5.25C30.425 5.01 30.5 4.755 30.5 4.5C30.5 4.10218 30.342 3.72064 30.0607 3.43934C29.7794 3.15804 29.3978 3 29 3H6.815L5.405 0M9.5 24C7.835 24 6.5 25.335 6.5 27C6.5 27.7956 6.81607 28.5587 7.37868 29.1213C7.94129 29.6839 8.70435 30 9.5 30C10.2956 30 11.0587 29.6839 11.6213 29.1213C12.1839 28.5587 12.5 27.7956 12.5 27C12.5 26.2044 12.1839 25.4413 11.6213 24.8787C11.0587 24.3161 10.2956 24 9.5 24Z"
+                    fill="#013884" />
+                </svg>
+              </a>
+            </span>
+          </div>
         </div>
-      </nav>
+      </div>
     </div>
-
-    <!-- Popover -->
-    <div itemscope itemtype="http://schema.org/SiteNavigationElement" id="popover-menu" class="header--custom-background">
-      <!-- Categories -->
-      <div class="nav-bounds nav-default-desktop-categories-popover">
-        {{#each menu}}
-          <div class="nav-default-list--horizontal__item" data-toggle="{{this.name}}-{{@index}}">
-            <li class="nav-default-list--horizontal__category header--custom-text {{#if this.featured}}nav-default__sale-link{{/if}}">
-              {{#if this.url}}
-              <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-              {{else}}
-              <span class="header--link-disabled">{{this.name}}</span>
-              {{/if}}
-              <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-              <hr class="nav-default-list--vertical__hr header--custom-border" />
-            </li>
-            {{#each this.nodes}}
-            <div class="nav-default-list--horizontal__subitem">
-              <li class="header--custom-text">
-                <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-              </li>
-              <div class="nav-default-list--horizontal__attr-container">
-                {{#each this.nodes}}
-                <li class="nav-default-list--horizontal__attribute header--custom-text">
-                  <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-                </li>
-                {{/each}}
-              </div>
-            </div>
-            {{/each}}
+    <div class="customHeaderBottom">
+      <div class="customContainer">
+        <div class="bottomHeaderInner">
+          <div class="headerBottomCol subCategoriesCol">
+            <a href="/quarto">
+              Quarto
+            </a>
           </div>
-        {{/each}}
-      </div>
-      <!-- See more -->
-      <div class="nav-bounds nav-default-desktop-see-more-popover" id="nav-popover-list">
-        {{#each menu}}
-        <div class="nav-default-list--horizontal__item" data-toggle="see-more">
-          <li class="nav-default-list--horizontal__category header--custom-text {{#if this.featured}}nav-default__sale-link{{/if}}">
-            {{#if this.url}}
-            <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-            {{else}}
-            <span class="header--link-disabled">{{this.name}}</span>
-            {{/if}}
-            <hr class="nav-default-list--vertical__hr header--custom-border" />
-          </li>
-          <div>
-            {{#each this.nodes}}
-            <li class="nav-default-list--horizontal__subitem header--custom-text">
-              <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-            </li>
-            <div class="nav-default-list--horizontal__attr-container">
-              {{#each this.nodes}}
-              <li class="nav-default-list--horizontal__attribute header--custom-text">
-                <a href="{{this.url}}" {{#if this.openNewTab}}target="_blank" rel="noopener noreferrer"{{/if}}>{{this.name}}</a>
-              </li>
-              {{/each}}
-            </div>
-            {{/each}}
+          <div class="headerBottomCol subCategoriesCol">
+            <a href="/cozinha">
+              Cozinha
+            </a>
+          </div>
+          <div class="headerBottomCol subCategoriesCol">
+            <a href="/sala-de-estar">
+              Sala de Estar
+            </a>
+          </div>
+          <div class="headerBottomCol subCategoriesCol">
+            <a href="/escritorio">
+              Escritório
+            </a>
+          </div>
+          <div class="headerBottomCol subCategoriesCol">
+            <a href="/banheiro">
+              Banheiro
+            </a>
+          </div>
+          <div class="headerBottomCol subCategoriesCol">
+            <a href="/sala-de-jantar">
+              Sala de Jantar
+            </a>
           </div>
         </div>
-        {{/each}}
       </div>
     </div>
   </header>
