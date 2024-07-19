@@ -3617,6 +3617,43 @@ body {
   background: transparent;
 }
 
+/*BOTTOM BAR*/
+
+.fixedBottomWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--lightBlue);
+  padding: 4px 0;
+}
+.fixedBottomForMobile,
+.fixedBottomWrapper {
+display: flex;
+justify-content: center;
+}
+.fixedBottomForMobile {
+max-width: 450px;
+width: 100%;
+}
+.fixedBottomForMobile button {
+background-color: transparent;
+border: 0;
+}
+.fixedBottomForMobile img {
+max-width: 100%;
+}
+.fixedBottomForMobile button,
+.fixedBottomForMobile a {
+width: calc(25%);
+text-align: center;
+display: inline-flex;
+justify-content: center;
+align-items: center;
+padding: 4px;
+}
+
 /*CATEGORIAS EM DESTAQUE MOBILE*/
 
 .customMobile .categoryHighlight{
