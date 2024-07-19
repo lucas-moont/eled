@@ -543,3 +543,44 @@
     </div>
   </div>
 </div>
+
+<script>
+  if (!(document.querySelector('.home'))) {
+    console.log(document.querySelectorAll('.showAtHome'))
+    document.querySelectorAll('.showAtHome').forEach(item => {
+      item.style.display = 'none'
+    })
+  }
+
+  let customDesktop = document.querySelectorAll('.customDesktop')
+  let customMobile = document.querySelectorAll('.customMobile')
+
+
+  if (screen.width < 768) {
+    customDesktop.forEach(item => {
+      item.style.display = 'none'
+    })
+  }
+  else {
+    customMobile.forEach(item => {
+      item.style.display = 'none'
+    })
+  }
+
+  let searchFormMobile = document.querySelector('.searchFormMobile')
+
+  searchFormMobile.addEventListener('submit', (event) => {
+    event.preventDefault()
+    let searchValMobile = document.querySelector('.searchInputMobile').value
+    window.location.href = `/${searchValMobile}`
+  })
+
+  let searchFormDesktop = document.querySelector('#searchFormDesktop')
+
+  searchFormDesktop.addEventListener('submit', (event) => {
+    event.preventDefault()
+    let searchValDesktop = searchFormDesktop.querySelector('#searchInputDesktop').value
+    window.location.href = `/${searchValDesktop}`
+  })
+
+</script>

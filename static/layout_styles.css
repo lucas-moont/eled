@@ -215,9 +215,9 @@ body {
 }
 .flash-component {
   align-items: center;
-  background-color: #333;
+  background-color: var(--lightBlue) !important;
   box-sizing: border-box;
-  color: #ffffff;
+  color: var(--darkBlue) !important;
   display: flex;
   justify-content: center;
   min-height: 33px;
@@ -225,6 +225,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 100;
+  font-weight: 600 !important;
 }
 .flash-component a {
   color: #ffffff;
@@ -3667,7 +3668,7 @@ body {
   overflow-y: scroll;
   transition: 0.5s;
   box-sizing: border-box;
-  left: 0vw;
+  left: -100vw;
 }
 
 .mainCustomFormMobile {
