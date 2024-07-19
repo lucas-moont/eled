@@ -3574,6 +3574,49 @@ body {
   margin-top: 64px;
 }
 
+/*HEADER MOBILE*/
+
+.customHeaderMobile{
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.customHeaderMobile .customContainer{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.headerLogoMobile{
+  width: 84px;
+}
+
+.searchFormMobile{
+  border: 2px solid var(--darkBlue);
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.searchInputMobile{
+  background-color: transparent;
+  border: 0;
+  width: 200px;
+}
+
+.searchInputMobile::placeholder{
+  color: var(--darkBlue);
+}
+
+.searchBtnMobile{
+  border: 0;
+  background: transparent;
+}
+
 /*CATEGORIAS EM DESTAQUE MOBILE*/
 
 .customMobile .categoryHighlight{
